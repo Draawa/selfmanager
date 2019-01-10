@@ -59,7 +59,8 @@ function traitementClick(event)
       element.dataset.selected='unselected';
       element.classList.remove('selected');
     });
-  document.querySelector('.skill-details-cancel button').get(0).setAttribute('disabled', (curr.dataset.selected==='true'?'false':'true'))
+  let btn = document.querySelector('#skill-details-cancel button');
+  btn.disabled=!(this.dataset.selected==='selected');
   //console.log(this.classList);
 }
 
