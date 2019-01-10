@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <title>Self Manager</title>
+    <link rel='stylesheet' href='style.css'/>
+    <script type="text/javascript" src='script.js'></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <div id='titleBar'>
+      <div id='dragBar'>
+        <span id='titleBarLabel'>SELFMANAGER</span>
+      </div>
+      <div id='close-btn' class="titleBar-button titleBar-closebtn">
+        <span class='titleBtnLabel'>X</span>
+      </div>
+      <div id='max-btn' class="titleBar-button">
+        <span class='titleBtnLabel'>O</span>
+      </div>
+      <div id='min-btn' class="titleBar-button">
+        <span class='titleBtnLabel' id='titleMinBtnLabel'>_</span>
+      </div>
+    </div>
+
+    <div id='banner' class="banner0">
+      <div id='banner-avatar' class='banner1'>
+      </div>
+      <div id='banner-userInfo' class='banner1'>
+        <div id='userInfo-nameLevel' class='banner2'>
+        </div>
+        <div id='userInfo-xp' class='banner2'>
+          <div id='xp-label' class='banner3'>
+            <div id='label-minXp' class='banner4 bannerMin'>
+              <span>minimum</span>
+            </div>
+            <div id='label-xpPerc' class='banner4 bannerPerc'>
+              <span>percent</span>
+            </div>
+            <div id='label-maxXp' class='banner4 bannerMax'>
+              <span>maximum</span>
+            </div>
+          </div>
+          <div id='xp-bar' class='banner3'>
+            <div class='progressBar' data-barMin='0' data-barMax='100' data-barCurr='56' data-barColor='#7093cc'>
+            </div>
+          </div>
+        </div>
+        <div id='userInfo-sanity' class='banner2'>
+          <div id='sanity-label' class='banner3'>
+            <div id='label-minSanity' class='banner4 bannerMin'>
+              <span>minimum</span>
+            </div>
+            <div id='label-sanityPerc' class='banner4 bannerPerc'>
+              <span>percent</span>
+            </div>
+            <div id='label-maxSanity' class='banner4 bannerMax'>
+              <span>maximum</span>
+            </div>
+          </div>
+          <div id='sanity-bar' class='banner3'>
+            <div class='progressBar' data-barMin='0' data-barMax='100' data-barCurr='23' data-barColor='#83d38b'>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id='banner-settingsHistory' class='banner1'>
+
+
+      </div>
+    </div>
+
+    <div id='navContainer'>
+      <div id='taskNav' class='nav'>
+        <div id='task-create' class='navButton confirmCreate-button'>
+        </div>
+        <div id='nav-taskCreate' class='innerNav createNav'>
+        </div>
+        <div id='task-create-cancel' class='navButton createCancel-button'>
+          <button disabled>Create a Task</button>
+        </div>
+        <div id='nav-taskList' class='innerNav listNav'>
+          <div id='taskList-header' class='listNav-header'>
+            <div id='taskList-title' class='listNav-title'>
+              <span>TASKS</span>
+            </div>
+          </div>
+          <div id='taskList-filter' class='listNav-filter'>
+            <div class="dropdown">
+              <div onclick="dropdownFunc1()" class="dropbtn">Filter</div>
+                <div id="myDropdown1" class="dropdown-content">
+                  <span>Name</span>
+                  <span>Category</span>
+                  <span>Due Date</span>
+                  <span>Emergency Level</span>
+                </div>
+              </div>
+            <div id='taskList-search' class='listNav-search'>
+            </div>
+          </div>
+          <div id='taskList-list' class='listNav-list'>
+
+          </div>
+        </div>
+        <div id='task-details-cancel' class='navButton detailsCancel-button'>
+          <button disabled>Details</button>
+        </div>
+        <div id='nav-taskDetails' class='innerNav detailNav'>
+        </div>
+        <div id='task-edit' class='navButton confirmEdit-button'>
+        </div>
+      </div>
+
+      <div id='actionNav' class='nav'>
+        <div id='action-create' class='navButton confirmCreate-button'>
+        </div>
+        <div id='nav-actionCreate' class='innerNav createNav'>
+        </div>
+        <div id='action-create-cancel' class='navButton createCancel-button'>
+          <button disabled>Create an Action</button>
+        </div>
+        <div id='nav-actionList' class='innerNav listNav'>
+          <div id='actionList-header' class='listNav-header'>
+            <div id='actionList-title' class='listNav-title'>
+              <span>ACTIONS</span>
+            </div>
+          </div>
+          <div id='actionList-filter' class='listNav-filter'>
+            <div class="dropdown">
+              <div onclick="dropdownFunc2()" class="dropbtn">Filter</div>
+                <div id="myDropdown2" class="dropdown-content">
+                  <span>Name</span>
+                  <span>Category</span>
+                  <span>Times Done</span>
+                </div>
+              </div>
+            <div id='actionList-search' class='listNav-search'>
+            </div>
+          </div>
+          <div id='actionList-list' class='listNav-list'>
+          </div>
+        </div>
+        <div id='action-details-cancel' class='navButton detailsCancel-button'>
+          <button disabled>Details</button>
+        </div>
+        <div id='nav-actionDetails' class='innerNav detailNav'>
+        </div>
+        <div id='action-edit' class='navButton confirmEdit-button'>
+        </div>
+      </div>
+
+      <div id='skillNav' class='nav'>
+        <div id='skill-create' class='navButton confirmCreate-button'>
+        </div>
+        <div id='nav-skillCreate' class='innerNav createNav'>
+        </div>
+        <div id='skill-create-cancel' class='navButton createCancel-button'>
+          <button enabled>Create a Skill</button>
+        </div>
+        <div id='nav-skillList' class='innerNav listNav'>
+          <div id='skillList-header' class='listNav-header'>
+            <div id='skillList-title' class='listNav-title'>
+              <span>SKILLS</span>
+            </div>
+          </div>
+          <div id='skillList-filter' class='listNav-filter'>
+            <div class="dropdown">
+              <div onclick="dropdownFunc3()" class="dropbtn">Filter</div>
+                <div id="myDropdown3" class="dropdown-content">
+                  <span>Name</span>
+                  <span>Category</span>
+                  <span>Level</span>
+                </div>
+              </div>
+            <div id='actionList-search' class='listNav-search'>
+            </div>
+          </div>
+          <div id='skillList-list' class='listNav-list'>
+
+            <div id='skillList-item' class='listItem'>
+              <div class='item-categoryLabel'>
+                <span class='categoryLabel'>CATEGORY</span>
+              </div>
+              <div class='skillItem-label'>
+                <span class='skillLabel'>Skill Name</span>
+              </div>
+              <div class='skillItem-level'>
+                Lv.01
+              </div>
+              <div class='skillItem-bar'>
+                <div class='progressBar' data-barMin='0' data-barMax='100' data-barCurr='50' data-barColor='#83d38b'>
+                </div>
+              </div>
+            </div>
+
+            <div id='skillList-item' class='listItem'>
+              <div class='item-categoryLabel'>
+                <span class='categoryLabel'>CATEGORY</span>
+              </div>
+              <div class='skillItem-label'>
+                <span class='skillLabel'>Skill Name</span>
+              </div>
+              <div class='skillItem-level'>
+                Lv.01
+              </div>
+              <div class='skillItem-bar'>
+                <div class='progressBar' data-barMin='0' data-barMax='100' data-barCurr='50' data-barColor='#83d38b'>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div id='skill-details-cancel' class='navButton detailsCancel-button'>
+          <button disabled>Details</button>
+        </div>
+        <div id='nav-skillDetails' class='innerNav detailNav'>
+        </div>
+        <div id='skill-edit' class='navButton confirmEdit-button'>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
