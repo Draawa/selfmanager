@@ -1,5 +1,6 @@
 Copy/paste following lines to mysql db.
 
+
 CREATE DATABASE selfmanager_db;
 
 USE selfmanager_db;
