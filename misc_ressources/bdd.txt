@@ -1,0 +1,100 @@
+Copy/paste following lines to mysql db.
+
+CREATE DATABASE selfmanager_db;
+
+USE selfmanager_db;
+
+CREATE TABLE IF NOT EXISTS users
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
+  avatar VARCHAR(128),
+  lastActivity DATETIME
+);
+
+CREATE TABLE IF NOT EXISTS sanity
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  level TINYINT NOT NULL,
+  owner INT,
+  FOREIGN KEY (owner) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS wallet
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  tokens BIGINT NOT NULL,
+  owner INT,
+  FOREIGN KEY (owner) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS categories
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
+  owner INT,
+  FOREIGN KEY (owner) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS skills
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
+  category INT,
+  description VARCHAR(128),
+  xp BIGINT NOT NULL,
+  timesUpdated INT NOT NULL,
+  lastUpdated DATETIME,
+  owner INT,
+  FOREIGN KEY (owner) REFERENCES users(id),
+  FOREIGN KEY (category) REFERENCES categories(id)
+);
+
+CREATE TABLE IF NOT EXISTS actions
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
+  category INT,
+  description VARCHAR(128),
+  timesDone INT NOT NULL,
+  lastDone DATETIME,
+  type BIT NOT NULL,
+  owner INT,
+  FOREIGN KEY (owner) REFERENCES users(id),
+  FOREIGN KEY (category) REFERENCES categories(id)
+);
+
+CREATE TABLE IF NOT EXISTS tasks
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
+  category INT,
+  description VARCHAR(128),
+  urgency TINYINT,
+  timesToDo INT,
+  repeatInterval BIGINT,
+  dueDate DATETIME,
+  owner INT,
+  FOREIGN KEY (owner) REFERENCES users(id),
+  FOREIGN KEY (category) REFERENCES categories(id)
+);
+
+CREATE TABLE IF NOT EXISTS actionsSkills
+(
+  actionId INT,
+  skillId INT,
+  xp BIGINT,
+  FOREIGN KEY (actionId) REFERENCES actions(id),
+  FOREIGN KEY (skillId) REFERENCES skills(id),
+  PRIMARY KEY (actionId, skillId)
+);
+
+CREATE TABLE IF NOT EXISTS tasksSkills
+(
+  taskId INT,
+  skillId INT,
+  xp BIGINT,
+  FOREIGN KEY (taskId) REFERENCES tasks(id),
+  FOREIGN KEY (skillId) REFERENCES skills(id),
+  PRIMARY KEY (taskId, skillId)
+);
