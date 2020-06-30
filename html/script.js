@@ -1,3 +1,5 @@
+var CONFIG = require('./config.json');
+
 window.onload=function()
 {
   const remote = require('electron').remote;
@@ -32,44 +34,44 @@ window.onload=function()
 
 
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
     }
   }
-}
 
-function traitementClick(event)
-{
-  event.stopPropagation();
-  this.dataset.selected=(this.dataset.selected==='selected'?'unselected':'selected');
-  if (this.dataset.selected==='selected')this.classList.add('selected');
-  else this.classList.remove('selected');
-  let curr=this;
-  document.querySelectorAll('.listItem').forEach( (element) =>
-    {
-      if(element===curr) return;
-      element.dataset.selected='unselected';
-      element.classList.remove('selected');
-    });
-  let btn = document.querySelector('#skill-details-cancel button');
-  btn.disabled=!(this.dataset.selected==='selected');
-  //console.log(this.classList);
-}
+  function traitementClick(event)
+  {
+    event.stopPropagation();
+    this.dataset.selected=(this.dataset.selected==='selected'?'unselected':'selected');
+    if (this.dataset.selected==='selected')this.classList.add('selected');
+    else this.classList.remove('selected');
+    let curr=this;
+    document.querySelectorAll('.listItem').forEach( (element) =>
+      {
+        if(element===curr) return;
+        element.dataset.selected='unselected';
+        element.classList.remove('selected');
+      });
+    let btn = document.querySelector('#skill-details-cancel button');
+    btn.disabled=!(this.dataset.selected==='selected');
+    //console.log(this.classList);
+  }
 
-let list = document.getElementsByClassName('listItem');
+  let list = document.getElementsByClassName('listItem');
 
-for (let i = 0; i<list.length;i++) { // Pour chaque élément de la liste ..
-    list[i].addEventListener('click', traitementClick, false);
-    console.log(list[i]);
-}
+  for (let i = 0; i<list.length;i++) { // Pour chaque élément de la liste ..
+      list[i].addEventListener('click', traitementClick, false);
+      console.log(list[i]);
+  }
 
 } //onload END
 

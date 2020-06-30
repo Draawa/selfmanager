@@ -2,6 +2,7 @@ Copy/paste following lines to mysql db.
 
 
 CREATE DATABASE selfmanager_db;
+GRANT ALL PRIVILEGES ON selfmanager_db.* TO 'sm'@'localhost' IDENTIFIED BY 'smsm';
 
 USE selfmanager_db;
 

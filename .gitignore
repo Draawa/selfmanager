@@ -63,3 +63,6 @@ typings/
 # Mac OS X .DS_Store folder metadata
 .DS_Store
 **/.DS_Store
+
+# config files with db credentials en such
+config.json
