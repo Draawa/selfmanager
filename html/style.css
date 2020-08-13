@@ -435,3 +435,68 @@ button:hover:not(:disabled)
   width: calc(100% - 30px);
   display: inline-block;
 }
+
+
+/* WELCOME BOARD STYLING */
+
+#welcomeBoard
+{
+  background-color:#434347;
+  margin:120px auto;
+  height:auto;
+  width: 300px;
+  font-family: forcedsquare;
+  text-align: center;
+}
+
+.welcomeMenu
+{
+
+}
+
+.welcomeItem
+{
+  padding-top: 10px;
+}
+
+.welcomeField
+{
+
+}
+
+.welcomeButton
+{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#welcomeTitle
+{
+  font-size: 30px;
+  padding-top: 0px;
+}
+
+#welcomeLine
+{
+  padding-top: 1px;
+}
+
+#loginMenu /* is a welcomeMenu */
+{
+
+}
+
+#userCreationMenu /* is a welcomeMenu */
+{
+  display: none;
+}
+
+#dbWarning /* is a welcomeItem */
+{
+  color:#db5846;
+  font-size: 12px;
+  display: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}

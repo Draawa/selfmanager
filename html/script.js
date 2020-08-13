@@ -1,4 +1,12 @@
-var CONFIG = require('./config.json');
+var config = require('./config.json');
+var mysql = require('mysql');
+
+var dbConnect = mysql.createConnection({
+    host     : config.dbHost,
+    user     : config.dbUser,
+    password : config.dbPassword,
+    database : config.dbName
+});
 
 window.onload=function()
 {
@@ -68,12 +76,28 @@ window.onload=function()
 
   let list = document.getElementsByClassName('listItem');
 
-  for (let i = 0; i<list.length;i++) { // Pour chaque élément de la liste ..
+  for (let i = 0; i<list.length;i++) { // Fore each list element ..
       list[i].addEventListener('click', traitementClick, false);
       console.log(list[i]);
   }
 
-} //onload END
+
+
+  // DATABASE HANDLING ----------------
+
+  // connect to mysql
+  dbConnect.connect(function(err) {
+      // in case of error
+      if(err){
+          console.log(err.code);
+          console.log(err.fatal);
+          document.getElementById("dbWarning").style.display='inline';
+      }
+  });
+
+
+
+} //ONLOAD END
 
 //filter dropdown menus
 function dropdownFunc1()
@@ -87,4 +111,63 @@ function dropdownFunc2()
 function dropdownFunc3()
 {
   document.getElementById("myDropdown3").classList.toggle("show");
+}
+
+
+
+
+//WELCOME MENU FUNCTIONS
+function openUserCreation()
+{
+  //Updating interface.......
+  document.getElementById("loginMenu").style.display='none';
+  document.getElementById("userCreationMenu").style.display='inline';
+
+}
+
+function cancelUserCreation()
+{
+  //Updating interface.......
+  document.getElementById('userCreateField').value="";
+  document.getElementById('password1Field').value="";
+  document.getElementById('password2Field').value="";
+  document.getElementById("loginMenu").style.display='inline';
+  document.getElementById("userCreationMenu").style.display='none';
+
+}
+
+function createUser()
+{
+  var username=document.getElementById('userCreateField').value;
+  var password1=document.getElementById('password1Field').value;
+  var password2=document.getElementById('password2Field').value;
+
+  if(password1!=password2)
+  {
+    document.getElementById("welcomeWarning").innerHTML = "The passwords provided do not match.";
+  }
+  else if(username=="")
+  {
+    document.getElementById("welcomeWarning").innerHTML = "Username cannot be empty.";
+  }
+  else if(password1=="" || password2=="")
+  {
+    document.getElementById("welcomeWarning").innerHTML = "Passwords cannot be empty.";
+  }
+  else
+  {
+    var query = "INSERT INTO users (name) VALUES('"+username+"')"
+    dbConnect.query(query, function(err, rows, fields)
+    {
+      if(err)
+      {
+          console.log("An error ocurred performing the query.");
+          console.log(err);
+          return;
+      }
+      console.log("Query succesfully executed", rows);
+    });
+  }
+
+
 }
