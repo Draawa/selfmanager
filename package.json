@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^3.0.13",
+    "electron": "^9.2.0",
     "mysql": "^2.18.1",
     "node-mysql-wrapper": "^2.9.3"
   },
